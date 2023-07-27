@@ -37,7 +37,11 @@ namespace tuddbs{
         template<typename... Args>
           void append_bulk(Args&&... args) {
             header_field_count += sizeof...(Args);
-            header += separator + concat(separator, std::forward<Args>(args)...);
+            if (header.empty()) {
+              header += concat(separator, std::forward<Args>(args)...);
+            } else {
+              header += separator + concat(separator, std::forward<Args>(args)...);
+            }
           }
         void append(dbsSerializable const & serializable);
         std::string get_header() const {
