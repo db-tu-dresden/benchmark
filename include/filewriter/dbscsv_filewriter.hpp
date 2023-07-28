@@ -67,8 +67,8 @@ namespace tuddbs{
       private:
         std::string get_latest_header() const;
       public:
-        dbsCSVFileWriter(std::string base_path, std::string separator)
-        : filename(base_path + "_" + now_format_str() + ".csv"),
+        dbsCSVFileWriter(std::string base_path, std::string separator, bool use_timestamp = false)
+        : filename(base_path + (use_timestamp ? ("_" + now_format_str()) : "") + ".csv"),
           out(filename, std::ios::out | std::ios::app),
           separator(separator),
           current_header(separator)

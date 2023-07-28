@@ -38,10 +38,10 @@ std::string tuddbs::dbsCSVFileWriter::get_latest_header() const {
 
 void tuddbs::dbsCSVFileWriter::set_field_names(tuddbs::dbsCSVHeader header) {
   auto current_header_str = this->get_latest_header();
+  this->current_header = header;
   if (header.get_header().compare(current_header_str) != 0) {
     this->out << header.get_string_id() << std::endl;
     this->out << header.get_header() << std::endl;
-    this->current_header = header;
   }
 }
 void tuddbs::dbsCSVFileWriter::append(tuddbs::dbsSerializable const & serializable) {
